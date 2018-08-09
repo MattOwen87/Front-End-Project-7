@@ -13,5 +13,7 @@ startButton.addEventListener('click', () => {
 
 function getRandomPhraseArray(arr){
 
+const randomArray = math.floor((math.random * phrases.length))
+const newPhrase = randomArray.split("");
 
 }
