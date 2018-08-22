@@ -3,10 +3,10 @@ const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const startButton = document.querySelector('.btn__reset');
 const startOverlay = document.getElementById('overlay');
-const keyBoard = document.querySelector('.keyrow, button');
-const button = document.getElementsByTagName('button');
+const keyBoard = document.querySelector('.keyrow');
+
 let missed = 0;
-const phrases = ['mammals', 'reptiles', 'amphibians', 'birds', 'fish'];
+const phrases = ['breaking bad', 'game of thrones', 'true detective', 'the alienist', 'bates motel'];
 
 
 startButton.addEventListener('click', () => {
@@ -45,7 +45,7 @@ function checkLetter(clicked){
 
   for (let i = 0; i < letters.length; i += 1){
     const letters = document.getElementsByClassName('letter');
-
+    const button = document.getElementsByTagName('button');
     if (letters[i].textContent.toLowerCase() === button) {
       letters[i].classList.add('show')
       const correctLetter = letters[i].textContent;
@@ -56,10 +56,10 @@ function checkLetter(clicked){
   }
 };
 
-keyBoard.addEventListener('click', (event) => {
+qwerty.addEventListener('click', (event) => {
 if (event.target.tagName === "BUTTON"){
   event.target.classList.add('chosen')
-  event.target.setAttribute('disabled, true')
+  event.target.setAttribute('disabled', true)
 
 }
 
