@@ -25,24 +25,28 @@ return splitPhrase;
 };
 
 
+
 const phraseArray = getRandomPhraseArray(phrases);
 
 
-
-function addPhraseToDisplay(arr){
+function addPhraseToDisplay(arr, phraseArray){
 
   for (let i = 0; i < arr.length; i += 1){
     const list = document.createElement('li');
-    phrase.children.appendChild(li);
+    phrase.children[0].appendChild(li);
     list.textContent = arr[i];
-    if (list.textContent != ' '){
-      letters.className = 'letter';
+    if (arr[i] != ' '){
+      list.className = 'letter';
     } else {
-      letters.className = 'space';
+      list.className = 'space';
     }
+
   }
 
 };
+
+
+
 
 
 function checkLetter(clicked){
@@ -57,6 +61,7 @@ function checkLetter(clicked){
     }
   }
   console.log(clicked.textContent);
+
 };
 
 qwerty.addEventListener('click', (event) => {
