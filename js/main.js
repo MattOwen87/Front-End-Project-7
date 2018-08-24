@@ -29,7 +29,7 @@ return splitPhrase;
 const phraseArray = getRandomPhraseArray(phrases);
 
 
-function addPhraseToDisplay(arr, phraseArray){
+function addPhraseToDisplay(arr){
 
   for (let i = 0; i < arr.length; i += 1){
     const list = document.createElement('li');
@@ -45,7 +45,7 @@ function addPhraseToDisplay(arr, phraseArray){
 
 };
 
-
+addPhrasetoDisplay(phraseArray);
 
 
 
