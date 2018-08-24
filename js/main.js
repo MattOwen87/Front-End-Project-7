@@ -33,7 +33,7 @@ function addPhraseToDisplay(arr){
 
   for (let i = 0; i < arr.length; i += 1){
     const list = document.createElement('li');
-    phrase.children[0].appendChild(li);
+    phrase.children[0].appendChild(list);
     list.textContent = arr[i];
     if (arr[i] != ' '){
       list.className = 'letter';
@@ -45,7 +45,7 @@ function addPhraseToDisplay(arr){
 
 };
 
-addPhrasetoDisplay(phraseArray);
+addPhraseToDisplay(phraseArray);
 
 
 
