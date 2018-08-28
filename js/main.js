@@ -3,7 +3,7 @@ const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const startButton = document.querySelector('.btn__reset');
 const startOverlay = document.getElementById('overlay');
-const keyBoard = document.querySelector('.keyrow');
+const keyBoard = document.querySelectorAll('.keyrow button');
 const letters = document.getElementsByClassName('letter');
 const button = document.getElementsByTagName('button');
 let missed = 0;
@@ -50,25 +50,25 @@ addPhraseToDisplay(phraseArray);
 
 
 function checkLetter(clicked){
-
+console.log(clicked);
+  const guess = clicked.textContent;
   for (let i = 0; i < letters.length; i += 1){
-    if (letters[i].textContent.toLowerCase() === button) {
-      letters[i].classList.add('show')
+    if (letters[i].textContent.toLowerCase() === guess) {
+      letters[i].classList.add('show');
       const correctLetter = letters[i].textContent;
       return correctLetter;
     } else {
       return null;
     }
-  }
-  console.log(clicked.textContent);
-
 };
+}
 
 qwerty.addEventListener('click', (event) => {
-if (event.target.tagName === "BUTTON"){
+if (event.target.tagName === 'BUTTON'){
   event.target.classList.add('chosen')
   event.target.setAttribute('disabled', true)
   const letterFound = checkLetter(event.target);
-}
+
+    }
 
 });
