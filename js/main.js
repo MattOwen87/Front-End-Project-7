@@ -3,9 +3,9 @@ const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const startButton = document.querySelector('.btn__reset');
 const startOverlay = document.getElementById('overlay');
-const keyBoard = document.querySelectorAll('.keyrow button');
 const letters = document.getElementsByClassName('letter');
 const button = document.getElementsByTagName('button');
+
 let missed = 0;
 const phrases = ['breaking bad', 'game of thrones', 'true detective', 'the alienist', 'bates motel'];
 
@@ -50,25 +50,31 @@ addPhraseToDisplay(phraseArray);
 
 
 function checkLetter(clicked){
-console.log(clicked);
   const guess = clicked.textContent;
   for (let i = 0; i < letters.length; i += 1){
     if (letters[i].textContent.toLowerCase() === guess) {
       letters[i].classList.add('show');
-      const correctLetter = letters[i].textContent;
-      return correctLetter;
-    } else {
-      return null;
+    const correctLetter = letters[i].textContent;
     }
-};
 }
+
+};
+
 
 qwerty.addEventListener('click', (event) => {
 if (event.target.tagName === 'BUTTON'){
   event.target.classList.add('chosen')
   event.target.setAttribute('disabled', true)
-  checkLetter(event.target);
+}
 
-    }
+const letterFound = checkLetter(event.target);
 
+
+ if (letterFound === null){
+  const score = document.getElementById('scoreboard');
+  const tries = document.getElementsByClassName('tries');
+  score.removeChild(tries);
+  missed += 1;
+}
+console.log(missed);
 });
