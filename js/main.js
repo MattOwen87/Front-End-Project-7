@@ -54,23 +54,25 @@ function checkLetter(clicked){
   for (let i = 0; i < letters.length; i += 1){
     if (letters[i].textContent.toLowerCase() === guess) {
       letters[i].classList.add('show');
-    const correctLetter = letters[i].textContent;
+    const correctLetter = letters[i].textContent
     }
 }
 
 };
-
 function checkWin(){
-
+  const newHeader = document.querySelector('h2');
   const correctGuess = document.getElementsByClassName('show');
   const winOverlay = document.getElementsByClassName('win');
   if(letters.length === correctGuess.length){
-
+    startOverlay.style.display = 'flex';
     startOverlay.classList.add('win');
-    alert('Congratulations, You Win !!!!!!!');
+    newHeader.textContent = ('Congratulations, You Win !!!!!!!');
+
   } else if(missed >= 5){
+    startOverlay.style.display = 'flex';
     startOverlay.classList.add('lose');
-    alert('Unlucky, You Lose Try Again');
+    newHeader.textContent = ('Unlucky, You Lose Try Again');
+
   }
 
 };
@@ -86,16 +88,12 @@ if (event.target.tagName === 'BUTTON'){
 }
 
 
-
-
-
- else if (checkLetter(event.target) === null){
-
+  if (event.target.tagName === null){
   const score = document.getElementById('scoreboard');
   const tries = document.getElementsByClassName('tries');
+  score.removeChild(firstChild.tries);
   missed += 1;
-
 }
-
+console.log(missed += 1);
 checkWin();
 });
