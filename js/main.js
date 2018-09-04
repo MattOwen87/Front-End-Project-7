@@ -5,13 +5,15 @@ const startButton = document.querySelector('.btn__reset');
 const startOverlay = document.getElementById('overlay');
 const letters = document.getElementsByClassName('letter');
 const button = document.getElementsByTagName('button');
+
 let missed = 0;
 
 const phrases = ['breaking bad', 'game of thrones', 'true detective', 'the alienist', 'bates motel'];
 
 
-startButton.addEventListener('click', () => {
+startButton.addEventListener('click', (event) => {
   startOverlay.style.display = 'none';
+
 
 });
 
@@ -51,31 +53,35 @@ addPhraseToDisplay(phraseArray);
 
 function checkLetter(clicked){
   const guess = clicked.textContent;
+  let correctLetter = null;
   for (let i = 0; i < letters.length; i += 1){
     if (letters[i].textContent.toLowerCase() === guess) {
       letters[i].classList.add('show');
-    const correctLetter = letters[i].textContent
-    }
+     correctLetter = letters[i].textContent;
+   }
 }
-
+return correctLetter;
 };
+
 function checkWin(){
   const newHeader = document.querySelector('h2');
   const correctGuess = document.getElementsByClassName('show');
-  const winOverlay = document.getElementsByClassName('win');
+
   if(letters.length === correctGuess.length){
     startOverlay.style.display = 'flex';
     startOverlay.classList.add('win');
     newHeader.textContent = ('Congratulations, You Win !!!!!!!');
+    startButton.textContent =('Try Again');
 
   } else if(missed >= 5){
     startOverlay.style.display = 'flex';
     startOverlay.classList.add('lose');
     newHeader.textContent = ('Unlucky, You Lose Try Again');
-
+    startButton.textContent =('Try Again');
   }
 
 };
+
 
 
 qwerty.addEventListener('click', (event) => {
@@ -87,13 +93,13 @@ if (event.target.tagName === 'BUTTON'){
 
 }
 
+  if (checkLetter(event.target) === null){
+  const lives = document.querySelector('img');
 
-  if (event.target.tagName === null){
-  const score = document.getElementById('scoreboard');
-  const tries = document.getElementsByClassName('tries');
-  score.removeChild(firstChild.tries);
-  missed += 1;
+lives.parentNode.removeChild(lives);
+missed += 1;
+
 }
-console.log(missed += 1);
+
 checkWin();
 });

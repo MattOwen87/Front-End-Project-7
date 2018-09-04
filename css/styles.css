@@ -101,6 +101,7 @@ button {
 .show {
   color: #000;
   background-color: #76CE82;
+  transition: ease-in .5s;
 }
 
 /* Keyboard */
@@ -111,6 +112,7 @@ button {
 }
 
 .chosen {
+  transition: ease-in .5s;
   background: var(--color-neutral);
   border-radius: 5px;
   font-size: var(--font-size-medium);
