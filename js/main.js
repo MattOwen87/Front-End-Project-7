@@ -4,7 +4,13 @@ const phrase = document.getElementById('phrase');
 const startButton = document.querySelector('.btn__reset');
 const startOverlay = document.getElementById('overlay');
 const letters = document.getElementsByClassName('letter');
-const button = document.getElementsByTagName('button');
+const button = document.querySelectorAll('button');
+const score = document.getElementById('scoreboard');
+const keyBoard = document.querySelectorAll('.keyrow button');
+const tries = document.getElementsByClassName('tries');
+const ul = document.getElementsByTagName('ul');
+const list = document.querySelectorAll('li');
+const lives = document.querySelectorAll('img');
 
 let missed = 0;
 
@@ -12,9 +18,10 @@ const phrases = ['breaking bad', 'game of thrones', 'true detective', 'the alien
 
 
 startButton.addEventListener('click', (event) => {
+
   startOverlay.style.display = 'none';
 
-
+resetGame();
 });
 
 function getRandomPhraseArray(arr){
@@ -78,6 +85,7 @@ function checkWin(){
     startOverlay.classList.add('lose');
     newHeader.textContent = ('Unlucky, You Lose Try Again');
     startButton.textContent =('Try Again');
+
   }
 
 };
@@ -92,14 +100,41 @@ if (event.target.tagName === 'BUTTON'){
   checkLetter(event.target);
 
 }
+else{
+  return false;
+  console.log();
+}
+
+
+
 
   if (checkLetter(event.target) === null){
   const lives = document.querySelector('img');
+  lives.style.display = 'none';
 
-lives.parentNode.removeChild(lives);
+//lives.parentNode.removeChild(lives);
 missed += 1;
-
+console.log(missed);
 }
+
+
 
 checkWin();
 });
+
+function resetGame(){
+
+  missed = 0;
+
+  for (let i = 0; i < letters.length; i += 1){
+      letters[i].classList.remove('show');
+    }
+
+for (let i = 0; i < keyBoard.length; i += 1){
+  keyBoard[i].classList.remove('chosen')
+  keyBoard[i].removeAttribute('disabled')
+}
+
+
+
+};
