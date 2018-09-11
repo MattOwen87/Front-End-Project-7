@@ -14,7 +14,7 @@ const lives = document.querySelectorAll('img');
 
 let missed = 0;
 
-const phrases = ['breaking bad', 'game of thrones', 'true detective', 'the alienist', 'bates motel'];
+const phrases = ['BREAKING BAD', 'GAME OF THRONES', 'TRUE DETECTIVE', 'THE ALIENIST', 'BATES MOTEL'];
 
 
 startButton.addEventListener('click', (event) => {
@@ -32,6 +32,7 @@ const splitPhrase = randomPhrase.split('');
 return splitPhrase;
 
 };
+
 
 
 
@@ -54,7 +55,7 @@ function addPhraseToDisplay(arr){
 
 };
 
-addPhraseToDisplay(phraseArray);
+
 
 
 
@@ -62,7 +63,7 @@ function checkLetter(clicked){
   const guess = clicked.textContent;
   let correctLetter = null;
   for (let i = 0; i < letters.length; i += 1){
-    if (letters[i].textContent.toLowerCase() === guess) {
+    if (letters[i].textContent.toUpperCase() === guess) {
       letters[i].classList.add('show');
      correctLetter = letters[i].textContent;
    }
@@ -105,11 +106,8 @@ else{
   console.log();
 }
 
-
-
-
   if (checkLetter(event.target) === null){
-  const lives = document.querySelector('img');
+  let lives = document.querySelector('img');
   lives.style.display = 'none';
 
 //lives.parentNode.removeChild(lives);
@@ -120,7 +118,9 @@ console.log(missed);
 
 
 checkWin();
+
 });
+
 
 function resetGame(){
 
@@ -128,6 +128,8 @@ function resetGame(){
 
   for (let i = 0; i < letters.length; i += 1){
       letters[i].classList.remove('show');
+      letters[i].style.display = 'none';
+
     }
 
 for (let i = 0; i < keyBoard.length; i += 1){
@@ -135,6 +137,7 @@ for (let i = 0; i < keyBoard.length; i += 1){
   keyBoard[i].removeAttribute('disabled')
 }
 
-
+let phraseArray = getRandomPhraseArray(phrases);
+addPhraseToDisplay(phraseArray);
 
 };
