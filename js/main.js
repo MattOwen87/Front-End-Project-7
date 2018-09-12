@@ -1,3 +1,4 @@
+//VARIABLES
 
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
@@ -11,11 +12,13 @@ const tries = document.getElementsByClassName('tries');
 const ul = document.getElementsByTagName('ul');
 const list = document.querySelectorAll('li');
 const lives = document.querySelectorAll('img');
-
 let missed = 0;
+
+//ARRAY
 
 const phrases = ['BREAKING BAD', 'GAME OF THRONES', 'TRUE DETECTIVE', 'THE ALIENIST', 'BATES MOTEL'];
 
+//START NEW GAME EVENT LISTENER
 
 startButton.addEventListener('click', (event) => {
 
@@ -24,20 +27,17 @@ startButton.addEventListener('click', (event) => {
 resetGame();
 });
 
+//FUNCTION TO GET RANDOM PHRASE FROM ARRAY
+
 function getRandomPhraseArray(arr){
 
 const randomPhrase = arr[Math.floor(Math.random() * arr.length)];
 const splitPhrase = randomPhrase.split('');
 
 return splitPhrase;
-
 };
 
-
-
-
-const phraseArray = getRandomPhraseArray(phrases);
-
+//FUNCTION TO ADD PHRASE TO THE DISPLAY
 
 function addPhraseToDisplay(arr){
 
@@ -50,14 +50,10 @@ function addPhraseToDisplay(arr){
     } else {
       list.className = 'space';
     }
-
   }
-
 };
 
-
-
-
+//FUNCTION TO CHECK IF THE LETTER CLICKED MATCHES LETTERS IN THE ARRAY
 
 function checkLetter(clicked){
   const guess = clicked.textContent;
@@ -70,6 +66,8 @@ function checkLetter(clicked){
 }
 return correctLetter;
 };
+
+//FUNCTION TO CHECK IF PLAYER HAS WON OR LOST AND SHOW RELEVANT OVERLAY
 
 function checkWin(){
   const newHeader = document.querySelector('h2');
@@ -88,10 +86,9 @@ function checkWin(){
     startButton.textContent =('Try Again');
 
   }
-
 };
 
-
+//EVENT LISTENER FOR THE KEYBOARD
 
 qwerty.addEventListener('click', (event) => {
 
@@ -110,21 +107,20 @@ else{
   let lives = document.querySelector('img');
   lives.style.display = 'none';
 
+
 //lives.parentNode.removeChild(lives);
 missed += 1;
 console.log(missed);
 }
 
-
-
 checkWin();
-
 });
 
+//FUNCTION TO RESET THE GAME
 
 function resetGame(){
 
-  missed = 0;
+  let missed = 0;
 
   for (let i = 0; i < letters.length; i += 1){
       letters[i].classList.remove('show');
@@ -137,7 +133,7 @@ for (let i = 0; i < keyBoard.length; i += 1){
   keyBoard[i].removeAttribute('disabled')
 }
 
-let phraseArray = getRandomPhraseArray(phrases);
+const phraseArray = getRandomPhraseArray(phrases);
 addPhraseToDisplay(phraseArray);
 
 };
