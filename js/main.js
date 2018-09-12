@@ -58,6 +58,7 @@ function addPhraseToDisplay(arr){
 function checkLetter(clicked){
   const guess = clicked.textContent;
   let correctLetter = null;
+
   for (let i = 0; i < letters.length; i += 1){
     if (letters[i].textContent.toUpperCase() === guess) {
       letters[i].classList.add('show');
@@ -100,20 +101,15 @@ if (event.target.tagName === 'BUTTON'){
 }
 else{
   return false;
-  console.log();
 }
 
-  if (checkLetter(event.target) === null){
-  let lives = document.querySelector('img');
-  lives.style.display = 'none';
+if (checkLetter(event.target) === null){
 
-
-//lives.parentNode.removeChild(lives);
-missed += 1;
-console.log(missed);
+  lives[missed].style.display = 'none';
+  missed += 1;
 }
 
-checkWin();
+  checkWin();
 });
 
 //FUNCTION TO RESET THE GAME
@@ -131,6 +127,10 @@ function resetGame(){
 for (let i = 0; i < keyBoard.length; i += 1){
   keyBoard[i].classList.remove('chosen')
   keyBoard[i].removeAttribute('disabled')
+}
+
+for (let i = 0; i < lives.length; i += 1){
+  lives[i].style.display = 'flex';
 }
 
 const phraseArray = getRandomPhraseArray(phrases);
