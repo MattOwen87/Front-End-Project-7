@@ -12,6 +12,7 @@ const tries = document.getElementsByClassName('tries');
 const ul = document.getElementsByTagName('ul');
 const list = document.querySelectorAll('li');
 const lives = document.querySelectorAll('img');
+const space = document.getElementsByClassName('space');
 let missed = 0;
 
 //ARRAY
@@ -62,7 +63,7 @@ function checkLetter(clicked){
   for (let i = 0; i < letters.length; i += 1){
     if (letters[i].textContent.toUpperCase() === guess) {
       letters[i].classList.add('show');
-     correctLetter = letters[i].textContent;
+      correctLetter = letters[i].textContent;
    }
 }
 return correctLetter;
@@ -80,13 +81,14 @@ function checkWin(){
     newHeader.textContent = ('Congratulations, You Win !!!!!!!');
     startButton.textContent =('Try Again');
 
-  } else if(missed >= 5){
+  } else if(missed === 5){
     startOverlay.style.display = 'flex';
     startOverlay.classList.add('lose');
     newHeader.textContent = ('Unlucky, You Lose Try Again');
     startButton.textContent =('Try Again');
 
   }
+
 };
 
 //EVENT LISTENER FOR THE KEYBOARD
@@ -116,22 +118,31 @@ if (checkLetter(event.target) === null){
 
 function resetGame(){
 
-  let missed = 0;
+  missed = 0;
 
-  for (let i = 0; i < letters.length; i += 1){
+for (let i = 0; i < letters.length; i += 1){
       letters[i].classList.remove('show');
-      letters[i].style.display = 'none';
-
     }
 
+for (let i = letters.length - 1; i >= 0; i -= 1){
+  letters[i].parentNode.removeChild(letters[i]);
+}
+
+for (let i = space.length - 1; i >= 0; i -= 1){
+  space[i].parentNode.removeChild(space[i]);
+}
+
 for (let i = 0; i < keyBoard.length; i += 1){
-  keyBoard[i].classList.remove('chosen')
-  keyBoard[i].removeAttribute('disabled')
+      keyBoard[i].classList.remove('chosen')
+      keyBoard[i].removeAttribute('disabled')
 }
 
 for (let i = 0; i < lives.length; i += 1){
-  lives[i].style.display = 'flex';
+      lives[i].style.display = 'flex';
 }
+
+startOverlay.classList.remove('lose');
+startOverlay.classList.remove('win');
 
 const phraseArray = getRandomPhraseArray(phrases);
 addPhraseToDisplay(phraseArray);

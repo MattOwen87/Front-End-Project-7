@@ -1,9 +1,11 @@
 /* Main styles */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&Roboto:300');
+
+@import url("https://fonts.googleapis.com/css?family=PT+Mono");
 
 /* Variables */
 
 :root {
+  --color-background: #EAF2F8;
   --color-win: #78CF82;
   --color-lose: #D94545;
   --color-start: #5b85b7;
@@ -27,6 +29,8 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  background-color: var(--color-background);
+  font-family: 'PT Mono', monospace;
 }
 
 li, ol, ul {
@@ -37,8 +41,16 @@ li, ol, ul {
 h2 {
   margin: 0;
   text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'PT Mono', monospace;
   font-size: var(--font-size-large);
+  margin: 0;
+}
+
+h3 {
+  margin: 0;
+  text-transform: uppercase;
+  font-family: 'PT Mono', monospace;
+  font-size: var(--font-size-medium);
   margin: 0;
 }
 
@@ -46,13 +58,14 @@ button {
   margin: 6px;
   border: 1px solid transparent;
   padding: .5rem 1rem;
-  color: var(--color-keys);
+  color: var(--color-start);
   font-size: var(--font-size-medium);
   background-color: var(--color-keys-light);
   border-radius: 5px;
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
   transition: var(--transition);
+  font-family: 'PT Mono', monospace;
 }
 
 .main-container {
@@ -99,8 +112,8 @@ button {
 }
 
 .show {
-  color: #000;
-  background-color: #76CE82;
+  color: #FFF;
+  background-color:  var(--color-win);
   transition: ease-in .5s;
 }
 
@@ -113,7 +126,7 @@ button {
 
 .chosen {
   transition: ease-in .5s;
-  background: var(--color-neutral);
+  background: var(--color-start);
   border-radius: 5px;
   font-size: var(--font-size-medium);
   color: #FFFFFF;
@@ -151,7 +164,7 @@ button {
 }
 
 .start a {
-  color: var(--color-win);
+  color: var(--color-start);
 }
 
 .win {
